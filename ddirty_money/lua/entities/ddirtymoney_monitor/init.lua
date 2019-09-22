@@ -44,12 +44,12 @@ end
 
 net.Receive("DDirtyMoney:StartMinigame", function(len, ply)
 	local difficulty = net.ReadInt(32)
-	local moneyPlyRisk = net.ReadInt(32)
+	local moneyPlyRisk = tonumber(net.ReadInt(32))
 	local value,timerValue,canPlay
 
 	if team.GetName(ply:Team()) == DDirtyMoney.LaunderTeam then
 
-		if moneyPlyRisk <= ply:GetNWInt("Dirtymoney") then
+		if moneyPlyRisk <= tonumber(ply:GetNWInt("Dirtymoney")) then
 			canPlay = true
 		end
 
@@ -95,7 +95,7 @@ net.Receive("DDirtyMoney:MinigameEnded", function(len, ply)
 
 	local moneyRisky = ply:GetNWInt("BadmoneyToBadBitch")
 
-	if ply:GetNWInt("Dirtymoney") < ply:GetNWInt("BadmoneyToBadBitch") then
+	if tonumber(ply:GetNWInt("Dirtymoney")) < tonumber(ply:GetNWInt("BadmoneyToBadBitch")) then
 		bool = false
 	end
 
