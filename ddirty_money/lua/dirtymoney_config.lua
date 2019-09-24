@@ -35,7 +35,11 @@ DDirtyMoney.ColorNoText = Color(255,255,255) -- Color for the No text
 
 -- JOB PART 
 
-DDirtyMoney.LaunderTeam = "Launder Guy" -- The team allowed to use the Monitor
+DDirtyMoney.LaunderTeam = { -- The teams allowed to use the Monitor
+	["Launder Guy"] = true,
+	["Mayor"] = true,
+	["Lawyer"] = true,
+}
 
 
 

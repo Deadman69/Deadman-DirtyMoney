@@ -28,7 +28,7 @@ end
 
 function ENT:Use( activator, caller, usetype, value )
 	if (activator == caller) and (activator:IsPlayer()) and (activator:IsValid()) and activator:Alive() then
-		if not activator:Team() == TEAM_LAUNDERGUY then return end
+		if not DDirtyMoney.LaunderTeam[team.GetName( activator:Team() )] then return end
 		local badMoney = activator:GetNWInt("Dirtymoney")
 		local goodMoney = activator:getDarkRPVar("money")
 		local moneyToGive = math.Round(badMoney*percentage)
@@ -47,7 +47,7 @@ net.Receive("DDirtyMoney:StartMinigame", function(len, ply)
 	local moneyPlyRisk = tonumber(net.ReadInt(32))
 	local value,timerValue,canPlay
 
-	if team.GetName(ply:Team()) == DDirtyMoney.LaunderTeam then
+	if DDirtyMoney.LaunderTeam[team.GetName( activator:Team() )] then
 
 		if moneyPlyRisk <= tonumber(ply:GetNWInt("Dirtymoney")) then
 			canPlay = true
