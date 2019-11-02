@@ -47,7 +47,7 @@ net.Receive("DDirtyMoney:StartMinigame", function(len, ply)
 	local moneyPlyRisk = tonumber(net.ReadInt(32))
 	local value,timerValue,canPlay
 
-	if DDirtyMoney.LaunderTeam[team.GetName( activator:Team() )] then
+	if DDirtyMoney.LaunderTeam[team.GetName( ply:Team() )] then
 
 		if moneyPlyRisk <= tonumber(ply:GetNWInt("Dirtymoney")) then
 			canPlay = true
