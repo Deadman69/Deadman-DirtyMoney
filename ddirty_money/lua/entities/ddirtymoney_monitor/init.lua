@@ -46,7 +46,14 @@ net.Receive("DDirtyMoney:StartMinigame", function(len, ply)
 	local difficulty = net.ReadInt(32)
 	local moneyPlyRisk = tonumber(net.ReadInt(32))
 	local value,timerValue,canPlay
-
+	
+	if moneyPlyRisk >= 20000000 then
+		net.Start("DDirtyMoney:SendNotifications")
+			net.WriteString("You can't send more than 20000000$ at once !")
+		net.Send(ply)
+		return
+	end
+		
 	if DDirtyMoney.LaunderTeam[team.GetName( ply:Team() )] then
 
 		if moneyPlyRisk <= tonumber(ply:GetNWInt("Dirtymoney")) then
